@@ -1,67 +1,79 @@
-# FreelaTracker
+# FreelaTracker · AnduX Dev
 
-Pequena API + frontend estatico para registrar propuestas freelance con FastAPI.
+Panel personal para llevar el control de mis propuestas de **Workana / Freelancer** en un solo lugar.  
+Permite registrar, filtrar y revisar el estado de cada oportunidad, con estadísticas básicas de cierre.
 
-## Requisitos
-- Python 3.10+
-- `pip` y `venv`
+> Proyecto de uso personal desarrollado por **AnduX Dev** (Medellín, Colombia) con **Python + FastAPI + PostgreSQL (Neon)**.
 
-## Configuracion rapida (dev)
-1. Crea y activa un entorno virtual:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Windows: venv\Scripts\activate
-   ```
-2. Instala dependencias:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Copia las variables de ejemplo y ajustalas:
-   ```bash
-   cp .env.example .env
-   # define FREELATRACKER_SECRET_KEY con 32+ caracteres aleatorios (solo dev)
-   ```
-   El archivo `.env` se carga automaticamente solo si `FREELATRACKER_ENV` es `dev|local` (o si fuerzas `FREELATRACKER_LOAD_ENV_FILE=true`). En produccion evita `.env` y exporta las variables directamente.
-4. Ejecuta el servidor:
-   ```bash
-   uvicorn app.main:app --reload
-   ```
-5. Abre `http://localhost:8000` en el navegador.
+---
 
-## Variables de entorno claves
-- `FREELATRACKER_SECRET_KEY` (obligatoria): clave larga para firmar JWT.
-- `FREELATRACKER_DATABASE_URL`: URL SQLAlchemy (por defecto SQLite local).
-- `FREELATRACKER_CORS_ORIGINS`: lista separada por comas de origenes permitidos.
-- `FREELATRACKER_ACCESS_TOKEN_MINUTES`: minutos de vigencia del token.
-- `FREELATRACKER_AUTO_CREATE_TABLES`: `true/false` para crear tablas en arranque. Por defecto `true` en dev y `false` si `FREELATRACKER_ENV=prod`.
-- `FREELATRACKER_ENV`: `dev|local|prod|staging` controla carga de `.env` y auto-creacion de tablas.
-- `FREELATRACKER_LOAD_ENV_FILE`: fuerza la carga (o no) de `.env` en dev.
+## 🚀 Funcionalidades
 
-## Migraciones
-Usa Alembic para versionar el esquema. La creacion automatica de tablas es solo para desarrollo local; en produccion configura Alembic y desactiva `FREELATRACKER_AUTO_CREATE_TABLES` o define `FREELATRACKER_ENV=prod`.
+- ✉️ **Autenticación de usuario propia** (no usa tu contraseña real de Workana/Freelancer).
+- 📥 **Registro de propuestas** con:
+  - Cliente
+  - Plataforma (Workana, Freelancer, etc.)
+  - Título del proyecto
+  - Link a la publicación
+  - Monto ofertado + moneda
+  - Estado (Enviada, En negociación, Aceptada, Rechazada, Borrador)
+  - Notas internas
+- 📋 **Tabla de propuestas** filtrada por usuario autenticado.
+- 📊 **Estadísticas básicas**:
+  - Total de propuestas
+  - Aceptadas
+  - Rechazadas
+  - Pendientes
+  - Tasa de cierre (%)
+- 🧹 UI oscura, compacta y pensada para uso diario mientras se aplican proyectos.
 
-## Pruebas
+---
+
+## 🧱 Stack tecnológico
+
+- **Backend:** [FastAPI](https://fastapi.tiangolo.com/)
+- **Frontend:** HTML + CSS puro (estilo dashboard dark)
+- **Base de datos dev:** SQLite (archivo local)
+- **Base de datos prod:** PostgreSQL en [Neon](https://neon.tech/) (plan gratuito)
+- **ORM:** SQLAlchemy
+- **Auth:** JWT (tokens de acceso + lista de tokens revocados)
+- **Servidor ASGI:** Uvicorn
+
+Tablas principales:
+
+- `users`
+- `proposals`
+- `revoked_tokens`
+
+---
+
+## 🖼️ Screenshots
+
+> (Puedes reemplazar estas rutas con tus propias capturas)
+
+- **Pantalla principal (login + propuestas)**  
+  ![FreelaTracker dashboard](docs/screenshots/dashboard.png)
+
+---
+
+## 📂 Estructura básica del proyecto
+
 ```bash
-pytest
-```
-
-## Seguridad y operacion
-- Rate limiting en `/auth/login` (ventana 5 min, 10 intentos) protegido con lock para entornos multi-hilo.
-- JWT incluye `jti` y revocacion en `/auth/logout`; los tokens cerrados se bloquean para el resto de su vigencia.
-- Claves y secretos solo via variables de entorno; no se versiona `.env` en prod.
-- Auto-creacion de tablas desactivada por defecto en `prod`; usa migraciones.
-- Politica de contrasena: requiere letras, numeros y caracter especial.
-- CORS configurable via `FREELATRACKER_CORS_ORIGINS`.
-
-# Activar venv
-.\venv\Scripts\activate
-
-# Variables (cuando uses Neon)
-$env:FREELATRACKER_ENV = "prod"
-$env:FREELATRACKER_DATABASE_URL = "postgresql+psycopg2://..."
-$env:FREELATRACKER_SECRET_KEY = "...."
-$env:FREELATRACKER_AUTO_CREATE_TABLES = "false"
-
-# Levantar server
-python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
-
+freelatracker/
+├── app/
+│   ├── main.py           # Punto de entrada FastAPI
+│   ├── config.py         # Configuración y lectura de env vars
+│   ├── database.py       # Motor SQLAlchemy y sesión
+│   ├── models.py         # Modelos ORM (User, Proposal, RevokedToken)
+│   ├── schemas.py        # Esquemas Pydantic
+│   ├── auth.py           # Lógica de autenticación y JWT
+│   ├── routers/
+│   │   ├── auth.py       # /auth/login, /auth/register, etc.
+│   │   └── proposals.py  # CRUD de propuestas + stats
+│   └── static/
+│       ├── index.html    # UI principal
+│       └── styles.css    # Estilos del dashboard
+├── requirements.txt
+├── .env.example
+├── .gitignore
+└── README.md
