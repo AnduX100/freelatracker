@@ -49,7 +49,7 @@ Tablas principales:
 
 ## 🖼️ Screenshots
 
-> (Puedes reemplazar estas rutas con tus propias capturas)
+
 
 - **Pantalla principal (login + propuestas)**  
   ![FreelaTracker dashboard](docs/screenshots/dashboard.png)
