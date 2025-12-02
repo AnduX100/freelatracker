@@ -52,3 +52,16 @@ pytest
 - Auto-creacion de tablas desactivada por defecto en `prod`; usa migraciones.
 - Politica de contrasena: requiere letras, numeros y caracter especial.
 - CORS configurable via `FREELATRACKER_CORS_ORIGINS`.
+
+# Activar venv
+.\venv\Scripts\activate
+
+# Variables (cuando uses Neon)
+$env:FREELATRACKER_ENV = "prod"
+$env:FREELATRACKER_DATABASE_URL = "postgresql+psycopg2://..."
+$env:FREELATRACKER_SECRET_KEY = "...."
+$env:FREELATRACKER_AUTO_CREATE_TABLES = "false"
+
+# Levantar server
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+

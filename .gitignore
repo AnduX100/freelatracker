@@ -1,8 +1,22 @@
-__pycache__/
-.pytest_cache/
-.venv/
+# Entornos virtuales
 venv/
-*.pyc
-freelatracker.db
+.venv/
+
+# Archivos Python compilados
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Config / secretos locales
 .env
-*.sqlite3
+*.env
+.env.*
+freelatracker.db
+freelatracker_prod.db
+
+# Script local con secretos (si lo tienes)
+run-prod.ps1
+
+# Config de IDE
+.vscode/
+.idea/
