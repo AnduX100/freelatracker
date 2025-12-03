@@ -114,7 +114,7 @@ Abrir en el navegador:
 
 ## 🗄️ Uso con PostgreSQL (Neon) en prod/staging
 
-1. Crea un proyecto gratuito en Neon.
+1. Crea un proyecto gratuito en [Neon](https://neon.tech/).
 2. Obtén la cadena de conexión en formato psycopg2.
 3. Exporta las variables de entorno, por ejemplo en PowerShell:
 ```bash
@@ -156,4 +156,3 @@ Desarrollador Python / FastAPI · Medellín, Colombia
 
 - GitHub: @AnduX100
 
-::contentReference[oaicite:0]{index=0}
