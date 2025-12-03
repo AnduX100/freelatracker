@@ -112,7 +112,7 @@ uvicorn app.main:app --reload
 Abrir en el navegador:
 - http://127.0.0.1:8000
 
-##🗄️ Uso con PostgreSQL (Neon) en prod/staging
+## 🗄️ Uso con PostgreSQL (Neon) en prod/staging
 
 1. Crea un proyecto gratuito en Neon.
 2. Obtén la cadena de conexión en formato psycopg2.
