@@ -77,3 +77,13 @@ freelatracker/
 ├── .env.example
 ├── .gitignore
 └── README.md
+
+---
+
+## 🧪 Ejecutar en local (modo dev)
+
+1. Clonar el repo
+
+```bash
+
+
