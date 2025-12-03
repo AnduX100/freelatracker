@@ -142,3 +142,8 @@ Si apagas y vuelves a prender el server y tus propuestas siguen ahí, estás ley
 - Tags por tipo de proyecto (Python, AWS, IA, etc.).
 - Dashboard de gráficos.
 - Multi-idioma (ES/EN).
+
+## 📜 Licencia
+
+Este proyecto se distribuye bajo la licencia MIT.
+Puedes usarlo como referencia o base para tu propio panel de propuestas.
