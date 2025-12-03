@@ -78,12 +78,35 @@ freelatracker/
 ├── .gitignore
 └── README.md
 
----
+```
 
 ## 🧪 Ejecutar en local (modo dev)
 
 1. Clonar el repo
-
 ```bash
-
-
+git clone https://github.com/AnduX100/freelatracker.git
+cd freelatracker
+```
+2. Crear entorno virtual
+```bash
+python -m venv venv
+# Windows (PowerShell)
+venv\Scripts\Activate.ps1
+# Linux/macOS
+source venv/bin/activate
+```
+3. Instalar dependencias
+```bash
+pip install -r requirements.txt
+```
+4. Configurar .env para desarrollo
+```bash
+cp .env.example .env
+```
+Esto levanta SQLite en un archivo local freelatracker.db.
+5. Levantar el servidor
+```bash
+uvicorn app.main:app --reload
+```
+Abrir en el navegador:
+- http://127.0.0.1:8000
