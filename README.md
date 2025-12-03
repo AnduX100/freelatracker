@@ -104,9 +104,28 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 Esto levanta SQLite en un archivo local freelatracker.db.
+
 5. Levantar el servidor
 ```bash
 uvicorn app.main:app --reload
 ```
 Abrir en el navegador:
 - http://127.0.0.1:8000
+
+##🗄️ Uso con PostgreSQL (Neon) en prod/staging
+
+1. Crea un proyecto gratuito en Neon.
+2. Obtén la cadena de conexión en formato psycopg2.
+3. Exporta las variables de entorno, por ejemplo en PowerShell:
+```bash
+$env:FREELATRACKER_ENV = "prod"
+$env:FREELATRACKER_SECRET_KEY = "<tu_clave_super_larga_y_secreta>"
+$env:FREELATRACKER_DATABASE_URL = "postgresql+psycopg2://USER:PASS@HOST/dbname"
+$env:FREELATRACKER_AUTO_CREATE_TABLES = "false"
+```
+4. Aplica el SQL de creación de tablas en Neon (users, proposals, revoked_tokens).
+5. Arranca el servidor:
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+Si apagas y vuelves a prender el server y tus propuestas siguen ahí, estás leyendo datos desde Neon correctamente.
