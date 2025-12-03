@@ -134,3 +134,11 @@ Si apagas y vuelves a prender el server y tus propuestas siguen ahí, estás ley
 
 - No guardes tus contraseñas reales de Workana / Freelancer aquí.
 - En producción se recomienda usar HTTPS y un proxy (Nginx, etc.) frente a la app.
+
+## 🗺️ Roadmap
+
+- Filtros por rango de fechas y plataforma.
+- Exportar propuestas a CSV/Excel.
+- Tags por tipo de proyecto (Python, AWS, IA, etc.).
+- Dashboard de gráficos.
+- Multi-idioma (ES/EN).
