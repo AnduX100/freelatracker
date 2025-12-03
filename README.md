@@ -129,3 +129,8 @@ $env:FREELATRACKER_AUTO_CREATE_TABLES = "false"
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 Si apagas y vuelves a prender el server y tus propuestas siguen ahí, estás leyendo datos desde Neon correctamente.
+
+## 🛡️ Notas de seguridad
+
+- No guardes tus contraseñas reales de Workana / Freelancer aquí.
+- En producción se recomienda usar HTTPS y un proxy (Nginx, etc.) frente a la app.
