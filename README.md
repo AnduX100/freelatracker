@@ -147,3 +147,13 @@ Si apagas y vuelves a prender el server y tus propuestas siguen ahí, estás ley
 
 Este proyecto se distribuye bajo la licencia MIT.
 Puedes usarlo como referencia o base para tu propio panel de propuestas.
+
+## ✍️ Autor
+
+AnduX Dev (Alejandro Marín)
+
+Desarrollador Python / FastAPI · Medellín, Colombia
+
+- GitHub: @AnduX100
+
+::contentReference[oaicite:0]{index=0}
